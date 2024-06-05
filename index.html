@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!--
+        Caminho base.
+        Define o caminho absoluto dos documentos e links do site.
+        Este camiho será alterado conforme a plataforma de hospedagem.
+    -->
+    <base href="./">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site para divulgação de gatos para adoção e arrecadação.">
+    <meta name="author" descrition="Thaina Almeida &lt;@gatinhosdamoon&gt;">
+    <meta name="keywords" description="Gatos, doação, arrecadação, resgate, lar.">
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- Carrega o CSS específico de cada página -->
+    <link rel="stylesheet" href="" id="pageCSS">
+
+    <link rel="shortcut icon" href="img/gato.png">
+    <title>Gatolândia</title>
+</head>
+
+<body>
+
+    <!-- WRAP -->
+    <div id="wrap">
+
+        <!-- Âncora para o topo da página → #top -->
+        <a id="top"></a>
+
+        <!-- Cabeçalho usando Font Awesome como ícone -->
+        <header>
+            <a href="home"><i class="fa-solid fa-paw" style="color: #f0a1faab;"></i></a>
+            <h1>Gatôlandia<small>A Casa dos Gatos</small></h1>
+        </header>
+
+        <!-- Menu -->
+        <nav>
+            <!-- Item de menu -->
+            <a href="home">
+
+                <!-- Ícone do item do menu -->
+                <i class="fa-solid fa-house" style="color: rgb(65, 66, 83);"></i>
+                <!-- Label do item do menu -->
+                <span>Início</span>
+            </a>
+
+            <!-- Os outros itens seguem o mesmo padrão acima -->
+            <a href="contacts">
+                <i class="fa-solid fa-headphones-simple" style="color: rgb(65, 66, 83);"></i>
+                <span>Contatos</span>
+            </a>
+            <a href="about">
+                <i class="fa-solid fa-circle-info fa-fw" style="color: rgb(65, 66, 83);" ></i>
+                <span>Sobre</span>
+            </a>
+
+            <a href="login" id="navUser">
+                <i class="fa-solid fa-user-large fa-flip-horizontal" style="color: rgb(65, 66, 83);"></i>
+                <span>Login</span>
+            </a>
+        </nav>
+
+        <!-- Conteúdo principal -->
+        <main></main>
+
+        <!-- Rodapé -->
+        <footer>
+
+            <!-- Primeira linha do rodapé -->
+            <div class="footer-top">
+                <a href="home">
+                    <i class="fa-solid fa-house fa-fw"></i>
+                </a>
+                <div>&copy; 2024 Moonsea e CatLenna</div>
+                <a href="#top">
+                    <i class="fa-solid fa-circle-up fa-fw"></i>
+                </a>
+            </div>
+
+            <!-- Segunda linha do rodapé -->
+            <div class="footer-bottom">
+
+                <div>
+                    <h4>Redes Sociais:</h4>
+                    <ul>
+                        <li>
+                            <a href="HTTPS://facebook.com/Gatolandia" target="_blank">
+                                <i class="fa-brands fa-square-facebook fa-fw"></i>
+                                <span>FaceBook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Gatolandia" target="_blank">
+                                <i class="fa-brands fa-square-twitter fa-fw"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/Gatolandia" target="_blank">
+                                <i class="fa-brands fa-square-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Links rápidos:</h4>
+                    <ul>
+                        <li>
+                            <a href="about">
+                                <i class="fa-solid fa-file-code fa-fw"></i>
+                                <span>Sobre o site</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="aboutus">
+                                <i class="fa-solid fa-laptop-code fa-fw"></i>
+                                <span>Quem somos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="policies">
+                                <i class="fa-solid fa-user-lock fa-fw"></i>
+                                <span>Privacidade</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </footer>
+
+        <hr class="nbsp">
+
+    </div>
+    <!-- Fim do WRAP -->
+
+    <div id="aboutCookies">
+        <div class="cookie-modal">
+            <div class="cookie-body">
+                <div class="cookie-content">Nosso site usa
+                    <a href="https://pt.wikipedia.org/wiki/Cookie_(inform%C3%A1tica)" target="_blank">
+                        <strong>Cookies</strong>
+                    </a> para melhorar sua experiência de navegação.
+                </div>
+                <form class="cookie-buttons">
+                    <button type="button" id="policies">Políticas de Privacidade</button>
+                    <button type="button" id="accept">Aceito todos os cookies</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carga do JavaScript -->
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script defer src="fb.js"></script>
+    <script defer src="index.js"></script>
+
+</body>
+
+</html>
