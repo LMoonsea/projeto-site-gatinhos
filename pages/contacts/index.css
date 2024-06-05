@@ -9,8 +9,8 @@
 
 #cForm input,
 #cForm textarea {
-    border: 1px solid red;
-    border-bottom: 3px solid red;
+    border: 1px solid gray;
+    border-bottom: 3px solid gray;
     background-color: rgb(255, 230, 230);
 }
 
@@ -18,10 +18,46 @@
     color: grey;
 }
 
+/* Estilizar o input tipo radio */
+#cForm input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    margin-right: 8px;
+    margin-top: 4px;
+}
+
+/* Estilo para o estado checked do radio button */
+#cForm input[type="radio"]:checked {
+    background-color: rgb(171, 171, 250);
+    border-color: rgb(171, 171, 250);
+}
+
+/* Indicador interno para o estado checked */
+#cForm input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: rgb(232, 240, 254);
+    border-radius: 50%;
+}
+
+
 #cForm input:valid,
 #cForm textarea:valid {
-    border: 1px solid green;
-    border-bottom: 3px solid green;
+    border: 1px solid gray;
+    border-bottom: 3px solid gray;
     background-color: rgb(232, 240, 254);
 }
 
@@ -54,14 +90,6 @@ nav.contacts i[class~=fa-square-envelope] {
     color: orangered;
 }
 
-nav.contacts i[class~=fa-square-facebook] {
-    color: #1877f2;
-}
-
-nav.contacts i[class~=fa-square-github] {
-    color: #6e5494;
-}
-
 nav.contacts i[class~=fa-square-instagram] {
-    color: #405de6;
+    color: #e640d8;
 }
