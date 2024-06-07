@@ -328,3 +328,45 @@ function getSocialList(userData) {
             }
         })
 }
+
+
+
+
+
+
+
+
+
+
+
+function  LerTabela(nomeTabela){
+    return JSON.parse(localStorage.getItem(nomeTabela) ?? "[]")
+}
+
+function SalvarEstadoTabela(tabelaLogin, dado){
+    localStorage.setItem(tabelaLogin, JSON.stringify(dado) );
+}
+
+/// usar no botao de salvar 
+function AdicionarUsuario(usuario, senha){
+    var tabelaLogin  = LerTabela("TabelaLogin");
+    tabelaLogin.push({usuario, senha});
+    SalvarEstadoTabela("TabelaLogin", tabelaLogin);
+}
+
+function LerUsuario(usuario){
+    var tabelaLogin  = LerTabela("TabelaLogin");
+    return  tabelaLogin.find( x=> x.usuario == usuario) ?? {};
+}
+
+// usar no botao de logar
+function ValidarUsuario(usuario, senha){
+    var objUsuario = LerUsuario(usuario);
+    if( objUsuario.senha == senha){
+        // fazer o que quiser quando o usuario passar a senha correta
+        alert("Logado com sucesso")
+    }else{
+        // fazer o oposto
+        alert("usuario ou senha invalidos");
+    }
+}

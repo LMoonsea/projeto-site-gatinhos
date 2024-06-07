@@ -7,7 +7,7 @@ $(document).ready(myHome)
  **/
 
 // Função principal da página "home".
-function myHome() {
+async function myHome() {
 
     changeTitle()
 
@@ -32,6 +32,13 @@ function myHome() {
 
         })
 
+
+
+    var listGato = [];
+    for(var i = 0; i < 10; i++){
+        await obterGato().then(gato => listGato.push(gato) );
+    }
+    MontarGatos(listGato);
 }
 
 function getMostViewed(limit) {
@@ -74,3 +81,47 @@ function getLastComments(limit) {
         })
 
 }
+
+
+function MontarGatos(list){
+
+    $("#conteudo").html(
+        list.map( objGato => {
+        var gato = (objGato[0] ?? {})?.breeds[0];
+        return `
+           <div class="bloco-gato">
+                <img class="imgGato" src="${ objGato[0].url }" with="500px" height="400px">
+                <h1 class="tituloGato">${ gato.name }</h1>
+                <p class="DescricaoGato">${ gato.description   }</p>
+           </div>`;
+    }).join(""));
+    
+    app.GatoObjeto = list;
+}
+
+async function obterGato() {
+    let gato = null;
+    const headers = new Headers({
+        "Content-Type": "application/json",
+        "x-api-key": "live_yKBQKV7fHBw0PVsygqZWMHX2IBC4G4Tpe1FavdftrfpwFb7AAoyZPzI3mrvJmmtV"
+    });
+    
+    const requestOptions = {
+        method: 'GET',
+        headers: headers,
+        redirect: 'follow'
+    };
+    
+    try {
+        const response = await fetch("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        gato = result;
+    } catch (error) {
+        console.log('Error:', error);
+    }
+  
+    return gato;
+} 
