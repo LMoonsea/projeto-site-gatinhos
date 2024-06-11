@@ -1,8 +1,8 @@
 /**
  * Gatolândia
- * /pages/contacts/index.js - Controller de contacts
+ * /pages/profile/index.js - Controller de profile
  * By Moonsea e Lenna
- * MIT License 2024 
+ * MIT License 2024  
  **/
 
 // Executa 'myContacts()' quando o documento estiver pronto.
@@ -152,7 +152,6 @@ function sendContact(ev) {
     // Sai da função sendContact() sem fazer mais nada.
     return false
 }
-
 
 
 

@@ -23,16 +23,7 @@ function myApp() {
         $('#aboutCookies').hide()
     else $('#aboutCookies').show()
 
-    // Monitor de usuário logado.
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            $('#navUser').html(`<img src="${user.photoURL}" alt="${user.displayName}" referrerpolicy="no-referrer"><span>Perfil</span>`)
-            $('#navUser').attr('href', 'profile')
-        } else {
-            $('#navUser').html(`<i class="fa-solid fa-user fa-fw"></i><span>Login</span>`)
-            $('#navUser').attr('href', 'login')
-        }
-    });
+   
 
     // Carrega a página à partir de rotas diretas.
     if (sessionStorage.path == undefined) sessionStorage.path = 'home'
@@ -51,22 +42,6 @@ function myApp() {
 
 }
 
-// Login do Firebase Authenticator.
-function fbLogin() {
-    // firebase.auth().signInWithPopup(provider)
-    firebase.auth().signInWithRedirect(provider)
-        .then((user) => {
-            popUp({ type: 'success', text: `Olá ${user.user.displayName}!` })
-            loadpage(location.pathname.split('/')[1])
-        })
-        .catch((error) => {
-            try {
-                popUp({ type: 'error', text: 'Ooops! Popups estão bloqueados!<br>Por favor, libere-os!' })
-            } catch (e) {
-                alert('Ooops! Popups estão bloqueados!\nPor favor, libere-os!')
-            }
-        })
-}
 
 // Processa rotas.
 function routerLink() {
@@ -89,11 +64,7 @@ function routerLink() {
     )
         return true
 
-    // Links de login.
-    if (href == 'login') {
-        fbLogin()
-        return false
-    }
+
 
     // Carrega a rota na SPA.
     loadpage(href)
@@ -141,35 +112,6 @@ function changeTitle(title = '') {
     $('title').html(pageTitle)
 }
 
-// Calcula a idade com base na data.
-function getAge(sysDate) {
-    // Obtendo partes da data atual.
-    const today = new Date()
-    const tYear = today.getFullYear()
-    const tMonth = today.getMonth() + 1
-    const tDay = today.getDate()
-
-    // Obtendo partes da data original.
-    const parts = sysDate.split('-')
-    const pYear = parts[0]
-    const pMonth = parts[1]
-    const pDay = parts[2]
-
-    // Calcula a idade pelo ano.
-    var age = tYear - pYear
-
-    // Verificar o mês e o dia.
-    if (pMonth > tMonth || pMonth == tMonth && pDay > tDay) age--
-
-    // Retorna a idade.
-    return age
-}
-
-// Carrega o artigo completo.
-function loadArticle() {
-    sessionStorage.article = parseInt($(this).attr('data-id'))
-    loadpage('view')
-}
 
 // Sanitiza um texto, removendo todas as tags HTML.
 function stripHTML(html) {
@@ -270,64 +212,6 @@ const cookie = {
     }
 }
 
-// Obtém a lista de colaboradores da plataforma, da API.
-function getUsersTeam(limit) {
-    var htmlOut = ''
-    $.get(app.apiBaseURL + 'users', {
-        status: 'on',
-        _sort: 'name',
-        _order: 'asc',
-        _limit: limit || 999
-    })
-        .done((data) => {
-            data.forEach((item) => {
-                var type
-                switch (item.type) {
-                    case 'admin': type = 'Administrador(a)'; break
-                    case 'author': type = 'Autor(a)'; break
-                    case 'moderator': type = 'Moderador(a)'; break
-                    default: type = 'Colaborador(a)'
-                }
-
-                htmlOut += `
-                    <div class="userclick users-grid-item" data-id="${item.id}">
-                        <img src="${item.photo}" alt="${item.name}">
-                        <h4>${item.name.split(' ')[0]}</h4>
-                        <small>${item.name}</small>
-                        <ul>
-                            <li>${getAge(item.birth)} anos</li>
-                            <li>${type}
-                        </ul>
-                    </div>
-                `
-            })
-            $('#usersGrid').html(htmlOut)
-            $('.userclick').click(openProfile)
-
-        })
-
-}
-
-// Abre o perfil de um colaborador.
-function openProfile() {
-    const userId = parseInt($(this).attr('data-id'))
-    sessionStorage.userId = userId
-    loadpage('aboutus')
-}
-
-function getSocialList(userData) {
-    $.get(app.apiBaseURL + 'users/social/' + userData.id)
-        .done((socialData) => {
-            if (socialData.length > 0) {
-                var socialList = '<ul class="social-list">'
-                socialData.forEach((item) => {
-                    socialList += `<li><a href="${item.link}" target="_blank"><i class="fa-brands fa-fw fa-${item.name.toLowerCase()}"></i> ${item.name}</a></li>`
-                })
-                socialList += '</ul>'
-                $('#socialList').html(socialList)
-            }
-        })
-}
 
 
 
@@ -339,34 +223,3 @@ function getSocialList(userData) {
 
 
 
-function  LerTabela(nomeTabela){
-    return JSON.parse(localStorage.getItem(nomeTabela) ?? "[]")
-}
-
-function SalvarEstadoTabela(tabelaLogin, dado){
-    localStorage.setItem(tabelaLogin, JSON.stringify(dado) );
-}
-
-/// usar no botao de salvar 
-function AdicionarUsuario(usuario, senha){
-    var tabelaLogin  = LerTabela("TabelaLogin");
-    tabelaLogin.push({usuario, senha});
-    SalvarEstadoTabela("TabelaLogin", tabelaLogin);
-}
-
-function LerUsuario(usuario){
-    var tabelaLogin  = LerTabela("TabelaLogin");
-    return  tabelaLogin.find( x=> x.usuario == usuario) ?? {};
-}
-
-// usar no botao de logar
-function ValidarUsuario(usuario, senha){
-    var objUsuario = LerUsuario(usuario);
-    if( objUsuario.senha == senha){
-        // fazer o que quiser quando o usuario passar a senha correta
-        alert("Logado com sucesso")
-    }else{
-        // fazer o oposto
-        alert("usuario ou senha invalidos");
-    }
-}

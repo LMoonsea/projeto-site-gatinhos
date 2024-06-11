@@ -41,26 +41,7 @@ async function myHome() {
     MontarGatos(listGato);
 }
 
-function getMostViewed(limit) {
 
-    var htmlOut = ''
-
-    $.get(app.apiBaseURL + 'articles/views/' + limit)
-        .done((data) => {
-            if (data.length > 0) {
-                htmlOut = '<ul>'
-                data.forEach((item) => {
-                    htmlOut += `<li class="article" data-id="${item.id}">${item.title}</li>`
-                })
-                htmlOut += '</ul>'
-            } else {
-                htmlOut = '<p class="center">Nenhum artigo encontrado.</p>'
-            }
-
-            $('#mostVisited').html(htmlOut)
-        })
-
-}
 
 function getLastComments(limit) {
 
@@ -90,7 +71,7 @@ function MontarGatos(list){
         var gato = (objGato[0] ?? {})?.breeds[0];
         return `
            <div class="bloco-gato">
-                <img class="imgGato" src="${ objGato[0].url }" with="500px" height="400px">
+                <img class="imgGato" src="${ objGato[0].url }" with="400px" height="300px">
                 <h1 class="tituloGato">${ gato.name }</h1>
                 <p class="DescricaoGato">${ gato.description   }</p>
            </div>`;

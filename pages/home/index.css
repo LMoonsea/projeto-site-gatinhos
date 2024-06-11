@@ -25,6 +25,15 @@
     margin: 0;
     padding: 1rem;
 }
+.formatação {
+    text-decoration: underline;
+    font-weight: bold;
+    background: linear-gradient(90deg,#ff1053 , #ff4f0f);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    }
+
 
 @media screen and (min-width: 575px) {
 

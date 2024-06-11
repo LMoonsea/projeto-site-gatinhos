@@ -1,0 +1,32 @@
+#formataçãoobg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #20042A;
+    flex-direction: column;
+}
+
+#texto {
+    font-size: 50px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+#paragrafo {
+    color: white;
+    margin-bottom: 50px;
+}
+
+#botãoobg {
+    padding: 15px 55px;
+    background: white;
+    color: #20042A;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.5s;
+}
+
+#botãoobg:hover {
+    border-radius: 16px;
+}

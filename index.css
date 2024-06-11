@@ -57,12 +57,12 @@ body {
 /* Links em geral */
 
 a {
-    color: #4682b4;
+    color: #8a0cb1;
     text-decoration: none;
 }
 
 a:hover {
-    color: #ff4500;
+    color: #e6531e;
     text-decoration: underline;
 }
 
@@ -75,6 +75,10 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+header a img {
+    width: 80px;
 }
 
 /* Contêiner que limita e centraliza a página usando o método 'wrap'. */
@@ -146,7 +150,7 @@ body {
 #wrap>nav a {
     align-items: center;
     border-radius: .35rem;
-    color: #ddd;
+    color:#8a0cb1;
     display: flex;
     flex-direction: column;
     padding: .65rem .75rem;
@@ -159,7 +163,7 @@ body {
 
 #wrap>nav a:hover {
     background-color: #fcd08f;
-    color: #fff;
+    color: #e6531e;
 }
 
 #wrap>nav a i {
@@ -246,12 +250,12 @@ main aside ul li.article:hover {
 }
 
 #wrap>footer a {
-    color: rgb(65, 66, 83);;
+    color: rgb(250, 209, 247);
     text-decoration: none;
 }
 
 #wrap>footer a:hover {
-    color: #ddd;
+    color: #8a0cb1;
     text-decoration: none;
 }
 
@@ -259,7 +263,7 @@ main aside ul li.article:hover {
 
 .footer-top {
     align-items: center;
-    border-bottom: 1px dotted #808080;
+    border-bottom: 1px dotted #e9e3e3;
     display: flex;
     justify-content: space-between;
 }
@@ -314,7 +318,7 @@ main aside ul li.article:hover {
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    color: grey;
+    color: rgb(253, 130, 72);
 }
 
 .responsive {

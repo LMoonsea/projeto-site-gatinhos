@@ -39,3 +39,7 @@ input{
     color: black;
     font-weight: bold;
 }
+
+img {
+    width: 30%;
+}
